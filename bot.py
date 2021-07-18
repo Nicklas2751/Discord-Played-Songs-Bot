@@ -5,6 +5,7 @@
 import os
 import discord
 import re
+import pytz
 from datetime import datetime, timezone
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
@@ -39,7 +40,7 @@ async def on_ready():
 async def listSongs(ctx, date_time: str):
     datetimeForBegin = datetime.strptime(date_time, "%H:%M %d-%m-%Y")
     datetimeForBegin.astimezone()
-    datetimeForBegin=datetimeForBegin.replace(tzinfo=datetime.utcnow().astimezone().tzinfo)
+    datetimeForBegin=datetimeForBegin.replace(tzinfo=datetime.utcnow().astimezone(pytz.timezone('Europe/Berlin')).tzinfo)
     datetimeForBegin = datetimeForBegin.astimezone(timezone.utc)
     datetimeForBegin = datetimeForBegin.replace(tzinfo=None)
     songs = await readSongsFromHistory(ctx, datetimeForBegin)
