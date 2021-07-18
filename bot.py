@@ -40,7 +40,7 @@ async def on_ready():
 async def listSongs(ctx, date_time: str):
     datetimeForBegin = datetime.strptime(date_time, "%H:%M %d-%m-%Y")
     datetimeForBegin.astimezone()
-    datetimeForBegin=datetimeForBegin.replace(tzinfo=datetime.utcnow().astimezone(pytz.timezone('Europe/Berlin')).tzinfo)
+    datetimeForBegin=datetimeForBegin.replace(tzinfo=datetime.utcnow().astimezone(pytz.timezone(os.getenv('TIMEZONE'))).tzinfo)
     datetimeForBegin = datetimeForBegin.astimezone(timezone.utc)
     datetimeForBegin = datetimeForBegin.replace(tzinfo=None)
     songs = await readSongsFromHistory(ctx, datetimeForBegin)

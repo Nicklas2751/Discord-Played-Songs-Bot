@@ -2,6 +2,7 @@ FROM python:3
 
 ENV DISCORD_TOKEN=""
 ENV DISCORD_GUILD=""
+ENV TIMEZONE="Europe/Berlin"
 
 WORKDIR /usr/src/app
 
